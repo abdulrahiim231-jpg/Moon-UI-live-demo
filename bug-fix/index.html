@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Bug Fix Pro - Professional HTML/CSS Bug Fixing Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+        }
+
+        .btn-glow {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(168, 85, 247, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        input, textarea {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        input:focus, textarea:focus {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(59, 130, 246, 0.5) !important;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glassmorphism">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                CSS Bug Fix Pro
+            </div>
+            <div class="space-x-6 hidden md:flex">
+                <a href="#services" class="hover:text-blue-400 transition">Services</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-4xl w-full text-center">
+            <div class="hero-gradient rounded-3xl p-12 glassmorphism mb-8">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Professional HTML/CSS Bug Fixing
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Get your website looking perfect. From broken layouts to styling issues, I fix it all with precision and speed.
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <button class="btn-glow px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-bold text-lg hover:from-blue-600 hover:to-purple-700">
+                        Hire Me Now
+                    </button>
+                    <button class="px-8 py-4 glassmorphism rounded-lg font-bold text-lg hover:bg-opacity-20 transition">
+                        View Portfolio
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 md:gap-8 mt-16">
+                <div class="glassmorphism p-6 rounded-xl">
+                    <div class="text-3xl md:text-4xl font-bold text-blue-400 mb-2">50+</div>
+                    <div class="text-gray-400">Projects Fixed</div>
+                </div>
+                <div class="glassmorphism p-6 rounded-xl">
+                    <div class="text-3xl md:text-4xl font-bold text-purple-400 mb-2">98%</div>
+                    <div class="text-gray-400">Client Satisfaction</div>
+                </div>
+                <div class="glassmorphism p-6 rounded-xl">
+                    <div class="text-3xl md:text-4xl font-bold text-pink-400 mb-2">24h</div>
+                    <div class="text-gray-400">Quick Turnaround</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                What I <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Fix</span>
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="feature-card glassmorphism p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-2xl font-bold mb-4">Styling Issues</h3>
+                    <p class="text-gray-400">
+                        Fix misaligned layouts, broken responsive design, and CSS conflicts that break your site's appearance.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card glassmorphism p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">⚙️</div>
+                    <h3 class="text-2xl font-bold mb-4">Layout Problems</h3>
+                    <p class="text-gray-400">
+                        Resolve flexbox, grid, and positioning issues that cause elements to display incorrectly.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card glassmorphism p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4">Performance</h3>
+                    <p class="text-gray-400">
+                        Optimize CSS, remove redundant code, and improve load times for better user experience.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="feature-card glassmorphism p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-4">Responsive Design</h3>
+                    <p class="text-gray-400">
+                        Ensure your website looks perfect on all devices from mobile to desktop screens.
+                    </p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="feature-card glassmorphism p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h3 class="text-2xl font-bold mb-4">Cross-browser Tests</h3>
+                    <p class="text-gray-400">
+                        Fix compatibility issues across different browsers and ensure consistent rendering.
+                    </p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="feature-card glassmorphism p-8 rounded-2xl">
+                    <div class="text-4xl mb-4">✨</div>
+                    <h3 class="text-2xl font-bold mb-4">Code Cleanup</h3>
+                    <p class="text-gray-400">
+                        Clean, refactor, and organize your HTML/CSS code for maintainability and efficiency.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+                Get in <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Touch</span>
+            </h2>
+            <p class="text-center text-gray-400 mb-12">
+                Ready to fix your CSS bugs? Send me a message and let's discuss your project details.
+            </p>
+
+            <div class="glassmorphism p-8 md:p-12 rounded-2xl">
+                <form class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-3">Your Name</label>
+                        <input 
+                            type="text" 
+                            placeholder="John Doe"
+                            class="w-full px-4 py-3 rounded-lg text-white focus:outline-none transition"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-3">Email Address</label>
+                        <input 
+                            type="email" 
+                            placeholder="john@example.com"
+                            class="w-full px-4 py-3 rounded-lg text-white focus:outline-none transition"
+                        >
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium mb-3">Project Details</label>
+                        <textarea 
+                            placeholder="Describe your CSS/HTML issues..."
+                            rows="5"
+                            class="w-full px-4 py-3 rounded-lg text-white focus:outline-none transition resize-none"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-glow w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg font-bold text-lg hover:from-blue-600 hover:to-purple-700">
+                        Send Message
+                    </button>
+                </form>
+
+                <div class="mt-12 pt-8 border-t border-white border-opacity-10 grid md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-gray-400 text-sm mb-2">Email</p>
+                        <p class="text-lg font-semibold">contact@cssbugfixpro.com</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 text-sm mb-2">Response Time</p>
+                        <p class="text-lg font-semibold">Within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white border-opacity-10 py-8 px-6">
+        <div class="max-w-6xl mx-auto text-center text-gray-400">
+            <p>&copy; 2026 CSS Bug Fix Pro. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

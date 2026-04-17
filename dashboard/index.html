@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Monitoring Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'charcoal': '#1a1a1a',
+                        'obsidian': '#2d2d2d',
+                        'neon-cyan': '#00ffff',
+                        'electric-purple': '#9d4edd',
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(0, 255, 255, 0.5)' },
+                            '50%': { boxShadow: '0 0 40px rgba(0, 255, 255, 0.8)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glassmorphism-hover:hover {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 40px rgba(157, 78, 221, 0.3);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+        }
+
+        .neon-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.7);
+        }
+
+        .terminal {
+            background: #0a0a0a;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-text {
+            color: #00ffff;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+
+        .gradient-line {
+            background: linear-gradient(90deg, #00ffff, #9d4edd);
+            filter: drop-shadow(0 0 10px rgba(157, 78, 221, 0.5));
+        }
+
+        .pulse-dot {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00ffff, #9d4edd);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Top Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glassmorphism border-b border-white/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-3 h-3 bg-green-400 rounded-full pulse-dot"></div>
+                    <span class="text-white font-semibold">AI Status:</span>
+                    <span class="text-green-400 font-bold">Online</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <button class="text-gray-400 hover:text-neon-cyan transition-colors">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button class="text-gray-400 hover:text-electric-purple transition-colors">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="pt-24 px-6 pb-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Metrics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="glassmorphism rounded-2xl p-6 glassmorphism-hover transition-all duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-gray-400 text-sm font-medium">Active Tokens</span>
+                        <i class="fas fa-coins text-electric-purple"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">2,847</div>
+                    <div class="flex items-center text-green-400 text-sm">
+                        <i class="fas fa-arrow-up mr-1"></i>
+                        <span>12.5% from last hour</span>
+                    </div>
+                </div>
+
+                <div class="glassmorphism rounded-2xl p-6 glassmorphism-hover transition-all duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-gray-400 text-sm font-medium">Avg Latency</span>
+                        <i class="fas fa-tachometer-alt text-neon-cyan"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">24ms</div>
+                    <div class="flex items-center text-green-400 text-sm">
+                        <i class="fas fa-arrow-down mr-1"></i>
+                        <span>8ms improvement</span>
+                    </div>
+                </div>
+
+                <div class="glassmorphism rounded-2xl p-6 glassmorphism-hover transition-all duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-gray-400 text-sm font-medium">Total Queries</span>
+                        <i class="fas fa-chart-line text-electric-purple"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">1.2M</div>
+                    <div class="flex items-center text-neon-cyan text-sm">
+                        <i class="fas fa-arrow-up mr-1"></i>
+                        <span>28% increase today</span>
+                    </div>
+                </div>
+
+                <div class="glassmorphism rounded-2xl p-6 glassmorphism-hover transition-all duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-gray-400 text-sm font-medium">Model Accuracy</span>
+                        <i class="fas fa-bullseye text-neon-cyan"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-2">98.7%</div>
+                    <div class="flex items-center text-green-400 text-sm">
+                        <i class="fas fa-arrow-up mr-1"></i>
+                        <span>0.3% improvement</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Main Chart -->
+                <div class="lg:col-span-2 glassmorphism rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-bold text-white">AI Inference Speed</h2>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <span class="text-green-400 text-sm">Real-time</span>
+                        </div>
+                    </div>
+                    <div class="relative h-80">
+                        <canvas id="inferenceChart"></canvas>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-neon-cyan">1.2ms</div>
+                            <div class="text-gray-400 text-sm">Min Speed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-white">3.4ms</div>
+                            <div class="text-gray-400 text-sm">Avg Speed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-electric-purple">8.7ms</div>
+                            <div class="text-gray-400 text-sm">Max Speed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar - Live Activity -->
+                <div class="glassmorphism rounded-2xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-bold text-white">Live Activity</h2>
+                        <div class="w-2 h-2 bg-green-400 rounded-full pulse-dot"></div>
+                    </div>
+                    <div class="terminal rounded-lg p-4 h-96 overflow-y-auto">
+                        <div class="space-y-2 text-sm" id="activityFeed">
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:34:56]</span> 
+                                <span class="text-green-400">✓</span> 
+                                Model initialized successfully
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:35:12]</span> 
+                                <span class="text-neon-cyan">→</span> 
+                                Processing batch inference request
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:35:45]</span> 
+                                <span class="text-green-400">✓</span> 
+                                Completed 1,247 queries in 2.3s
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:36:02]</span> 
+                                <span class="text-electric-purple">⚡</span> 
+                                Performance optimization applied
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:36:18]</span> 
+                                <span class="text-neon-cyan">→</span> 
+                                Monitoring system health
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:36:34]</span> 
+                                <span class="text-green-400">✓</span> 
+                                Cache cleared, memory optimized
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:36:51]</span> 
+                                <span class="text-electric-purple">⚡</span> 
+                                GPU utilization at 78%
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:37:08]</span> 
+                                <span class="text-neon-cyan">→</span> 
+                                Auto-scaling enabled
+                            </div>
+                            <div class="terminal-text">
+                                <span class="text-gray-500">[12:37:23]</span> 
+                                <span class="text-green-400">✓</span> 
+                                Model accuracy improved to 98.7%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Chart
+        const ctx = document.getElementById('inferenceChart').getContext('2d');
+        
+        // Generate sample data
+        const labels = [];
+        const data = [];
+        const now = new Date();
+        
+        for (let i = 23; i >= 0; i--) {
+            const time = new Date(now - i * 60000);
+            labels.push(time.toLocaleTimeString());
+            data.push(Math.random() * 5 + 2);
+        }
+
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(0, 255, 255, 0.8)');
+        gradient.addColorStop(1, 'rgba(157, 78, 221, 0.8)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Inference Speed (ms)',
+                    data: data,
+                    borderColor: '#00ffff',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: '#00ffff',
+                    pointBorderColor: '#9d4edd',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(26, 26, 26, 0.9)',
+                        titleColor: '#00ffff',
+                        bodyColor: '#ffffff',
+                        borderColor: 'rgba(157, 78, 221, 0.3)',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            borderColor: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.5)',
+                            font: {
+                                size: 10
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)',
+                            borderColor: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: 'rgba(255, 255, 255, 0.5)',
+                            font: {
+                                size: 10
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Live Activity Feed Simulation
+        function addActivityEntry() {
+            const feed = document.getElementById('activityFeed');
+            const now = new Date();
+            const timestamp = now.toLocaleTimeString();
+            
+            const activities = [
+                { icon: '✓', text: 'Batch processing completed', color: 'text-green-400' },
+                { icon: '→', text: 'New inference request received', color: 'text-neon-cyan' },
+                { icon: '⚡', text: 'Performance threshold reached', color: 'text-electric-purple' },
+                { icon: '✓', text: 'Model weights updated', color: 'text-green-400' },
+                { icon: '→', text: 'Load balancing active', color: 'text-neon-cyan' },
+                { icon: '⚡', text: 'GPU acceleration enabled', color: 'text-electric-purple' }
+            ];
+            
+            const activity = activities[Math.floor(Math.random() * activities.length)];
+            
+            const newEntry = document.createElement('div');
+            newEntry.className = 'terminal-text';
+            newEntry.innerHTML = `
+                <span class="text-gray-500">[${timestamp}]</span> 
+                <span class="${activity.color}">${activity.icon}</span> 
+                ${activity.text}
+            `;
+            
+            feed.insertBefore(newEntry, feed.firstChild);
+            
+            // Keep only last 10 entries
+            while (feed.children.length > 10) {
+                feed.removeChild(feed.lastChild);
+            }
+        }
+
+        // Add new activity every 3 seconds
+        setInterval(addActivityEntry, 3000);
+
+        // Add initial entries
+        for (let i = 0; i < 5; i++) {
+            setTimeout(addActivityEntry, i * 100);
+        }
+    </script>
+</body>
+</html>

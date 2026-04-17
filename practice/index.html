@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Business Solutions - Premium Catering Partners</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        /* Navigation */
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        #navbar h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        #navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #navbar ul li a {
+            text-decoration: none;
+            color: black;
+            padding: 8px 12px;
+            transition: background-color 0.3s;
+        }
+        
+        #navbar ul li a:hover {
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Hero section */
+        .hero {
+            background-image: url('assets/hamburger.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            margin-top: 70px;
+            margin-bottom: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .hero-content .cta-button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* About and Menu sections */
+        .about-catering, .menu {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1400px;
+            margin: 50px auto;
+            padding: 0 40px;
+            gap: 60px;
+            align-items: stretch;
+        }
+        
+        .about-catering > div:first-child, .menu > div:last-child {
+            flex: 1;
+            min-width: 400px;
+        }
+        
+        .about-catering > div:last-child, .menu > div:first-child {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .about-catering img, .menu img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .about-catering img:hover, .menu img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .menu-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item h3 {
+            font-size: 1.8rem;
+            margin: 0 0 5px 0;
+            font-weight: 600;
+        }
+        
+        .menu-item p {
+            font-size: 1.1rem;
+            margin: 0;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        /* Contact section */
+        .contact {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        
+        .contact p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact input, .contact textarea, .contact select {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .contact select {
+            cursor: pointer;
+            background-color: white;
+        }
+        
+        .contact select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+        }
+        
+        .contact button {
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .contact button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Testimonials section */
+        .testimonials {
+            background-color: #f9f9f9;
+            padding: 80px 40px;
+            margin: 60px 0;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .testimonial-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        
+        .testimonial-author strong {
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            /* Navigation */
+            #navbar {
+                padding: 8px 15px;
+                height: 50px;
+            }
+            
+            #navbar h2 {
+                font-size: 1.4rem;
+            }
+            
+            .hamburger {
+                display: flex;
+                width: 30px;
+                height: 25px;
+            }
+            
+            .hamburger span {
+                width: 100%;
+                height: 3px;
+                background-color: #333;
+                margin: 3px 0;
+                transition: 0.3s;
+            }
+            
+            #navbar ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #f8f8f8;
+                flex-direction: column;
+                padding: 0;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                z-index: 999;
+            }
+            
+            #navbar ul.active {
+                display: flex;
+            }
+            
+            #navbar ul li {
+                margin: 0;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            
+            #navbar ul li:last-child {
+                border-bottom: none;
+            }
+            
+            #navbar ul li a {
+                display: block;
+                padding: 18px 20px;
+                text-align: center;
+                font-size: 1rem;
+                font-weight: 500;
+                color: #333;
+                transition: background-color 0.3s;
+            }
+            
+            #navbar ul li a:hover {
+                background-color: #4CAF50;
+                color: white;
+            }
+            
+            /* Hero section */
+            .hero {
+                height: 70vh;
+                margin-top: 50px;
+                min-height: 400px;
+            }
+            
+            .hero-content {
+                padding: 0 20px;
+                max-width: 90%;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+                line-height: 1.5;
+                margin-bottom: 25px;
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .hero-content .cta-button {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+                border-radius: 25px;
+            }
+            
+            /* About and Menu sections */
+            .about-catering, .menu {
+                flex-direction: column;
+                padding: 0 15px;
+                gap: 25px;
+                margin: 25px auto;
+                max-width: 100%;
+            }
+            
+            .about-catering > div:first-child, .menu > div:last-child {
+                min-width: 100%;
+                order: 2;
+                margin-bottom: 10px;
+            }
+            
+            .about-catering > div:last-child, .menu > div:first-child {
+                min-width: 100%;
+                order: 1;
+                padding: 15px 10px;
+                text-align: center;
+            }
+            
+            .about-catering h2, .menu h2 {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+                font-weight: 600;
+                text-align: center;
+            }
+            
+            .about-catering p, .menu p {
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.6;
+                text-align: left;
+            }
+            
+            .about-catering p:first-of-type {
+                text-align: center;
+                font-weight: 600;
+            }
+            
+            .menu h3 {
+                font-size: 1.3rem;
+                font-weight: 600;
+                margin-bottom: 8px;
+            }
+            
+            .menu p {
+                font-size: 0.95rem;
+                font-weight: 400;
+                line-height: 1.5;
+            }
+            
+            /* Contact section */
+            .contact {
+                padding: 0 15px;
+                margin: 30px auto;
+                max-width: 100%;
+            }
+            
+            .contact h2 {
+                font-size: 1.8rem;
+                margin-bottom: 25px;
+                font-weight: 600;
+                text-align: center;
+            }
+            
+            .contact p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+                line-height: 1.6;
+                text-align: center;
+            }
+            
+            .contact form {
+                gap: 12px;
+                max-width: 100%;
+            }
+            
+            .about-catering img, .menu img {
+                height: 280px;
+                border-radius: 10px;
+            }
+            
+            .testimonials {
+                padding: 40px 20px;
+                margin: 30px 0;
+            }
+            
+            .testimonials h2 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 20px;
+            }
+            
+            .testimonial-card {
+                padding: 20px;
+            }
+            
+            .testimonial-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+            
+            .contact input, .contact textarea, .contact select {
+                padding: 14px;
+                font-size: 0.95rem;
+                border-radius: 8px;
+            }
+            
+            .contact button {
+                padding: 14px;
+                font-size: 1rem;
+                border-radius: 8px;
+                font-weight: 600;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            /* Extra small screens */
+            #navbar {
+                padding: 6px 12px;
+                height: 45px;
+            }
+            
+            #navbar h2 {
+                font-size: 1.2rem;
+            }
+            
+            .hamburger {
+                width: 25px;
+                height: 20px;
+            }
+            
+            .hamburger span {
+                height: 2px;
+                margin: 2px 0;
+            }
+            
+            .hero {
+                height: 65vh;
+                margin-top: 45px;
+                min-height: 350px;
+            }
+            
+            .hero-content {
+                padding: 0 15px;
+                max-width: 95%;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+                line-height: 1.1;
+                margin-bottom: 12px;
+            }
+            
+            .hero-content p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+                margin-bottom: 20px;
+            }
+            
+            .hero-content .cta-button {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+                border-radius: 20px;
+            }
+            
+            .about-catering, .menu {
+                padding: 0 12px;
+                margin: 20px auto;
+                gap: 20px;
+            }
+            
+            .about-catering h2, .menu h2 {
+                font-size: 1.6rem;
+                font-weight: 600;
+                margin-bottom: 12px;
+            }
+            
+            .about-catering p, .menu p {
+                font-size: 0.95rem;
+                font-weight: 400;
+                line-height: 1.5;
+            }
+            
+            .menu h3 {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 6px;
+            }
+            
+            .menu p {
+                font-size: 0.9rem;
+                font-weight: 400;
+                line-height: 1.4;
+            }
+            
+            .contact {
+                padding: 0 12px;
+                margin: 25px auto;
+            }
+            
+            .contact h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+            
+            .contact p {
+                font-size: 0.95rem;
+                margin-bottom: 15px;
+                line-height: 1.5;
+            }
+            
+            .contact form {
+                gap: 10px;
+            }
+            
+            .about-catering img, .menu img {
+                height: 220px;
+                border-radius: 8px;
+            }
+            
+            .contact input, .contact textarea, .contact select {
+                padding: 12px;
+                font-size: 0.9rem;
+                border-radius: 6px;
+            }
+            
+            .contact button {
+                padding: 12px;
+                font-size: 0.9rem;
+                border-radius: 6px;
+            }
+            
+            footer {
+                padding: 18px 12px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            /* Tablets */
+            .about-catering, .menu {
+                padding: 0 30px;
+                gap: 40px;
+            }
+            
+            .about-catering > div:first-child, .menu > div:last-child {
+                min-width: 350px;
+            }
+            
+            .about-catering > div:last-child, .menu > div:first-child {
+                min-width: 350px;
+            }
+            
+            .about-catering img, .menu img {
+                height: 400px;
+            }
+            
+            #navbar h2 {
+                font-size: 1.6rem;
+            }
+            
+            .about-catering h2, .menu h2 {
+                font-size: 2.2rem;
+                font-weight: 600;
+            }
+            
+            .contact h2 {
+                font-size: 2.2rem;
+                font-weight: 600;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="navbar">
+        <h2>Cafe Business Solutions</h2>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="nav-menu">
+            <li><a href="#about-catering">About</a></li>
+            <li><a href="#menu">Solutions</a></li>
+            <li><a href="#testimonials">Success Stories</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Elevate Your Cafe Business</h1>
+                <p>Premium Catering Partnerships for Successful Cafe Owners</p>
+                <a href="#menu" class="cta-button">Discover Our Solutions</a>
+            </div>
+        </section>
+        <section id="about-catering" class="about-catering">
+            <div>
+                <img src="assets/tablesetting2.jpg" alt="About Catering">
+            </div>
+            <div>
+                <h2>Business Partnership Excellence</h2>
+                <p style="color: #4CAF50; font-weight: 600;">Empowering Cafe Owners Since 1889</p>
+                <p>Cafe Business Solutions was founded to support ambitious cafe entrepreneurs like you. Our dedicated team of culinary business experts brings decades of combined experience in restaurant operations, menu development, and supply chain management. We partner exclusively with <strong>cafe business owners</strong> to drive growth and profitability.</p>
+                <p>Whether you're launching your first cafe or expanding an established chain, our commitment to your success remains unchanged. We understand the unique challenges of the food service industry and provide comprehensive solutions that increase revenue, reduce costs, and enhance customer satisfaction. Let us be your strategic partner in building a thriving cafe business.</p>
+            </div>
+        </section>
+        <section id="menu" class="menu">
+            <div>
+                <h2>Our Business Solutions</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <h3>Wholesale Bakery Supply</h3>
+                        <p>Fresh daily delivery of artisanal breads, pastries, and baked goods <strong>Starting at $150/day</strong></p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Cafe Menu Development</h3>
+                        <p>Custom menu creation, recipe development, and cost optimization <strong>$2,500 package</strong></p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Staff Training Programs</h3>
+                        <p>Professional barista and kitchen staff training & certification <strong>$1,800/course</strong></p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Event Catering Partnership</h3>
+                        <p>Private events, corporate meetings, and special occasion catering <strong>Revenue share</strong></p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Supply Chain Management</h3>
+                        <p>Premium ingredient sourcing and inventory optimization systems <strong>Custom pricing</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img src="assets/tablesetting.jpg" alt="Menu Table Setting">
+            </div>
+        </section>
+        <section id="testimonials" class="testimonials">
+            <div class="testimonials-container">
+                <h2>Success Stories</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Partnering with Cafe Business Solutions transformed our startup. Their wholesale supply program cut our food costs by 30% while improving quality. Revenue increased by 45% in the first year!"</p>
+                            <div class="testimonial-author">
+                                <strong>Sarah Chen</strong><br>
+                                Owner, Morning Brew Cafe
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The menu development service was invaluable. They helped us create a signature menu that set us apart from competitors. Our customer satisfaction scores went from 3.2 to 4.8 stars!"</p>
+                            <div class="testimonial-author">
+                                <strong>Michael Rodriguez</strong><br>
+                                Founder, Urban Grind Coffeehouse
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Their staff training program elevated our service standards completely. Our baristas now compete nationally, and our event catering revenue has tripled."</p>
+                            <div class="testimonial-author">
+                                <strong>Emma Thompson</strong><br>
+                                Director, Lakeside Cafe Chain
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="contact">
+            <h2>Start Your Partnership Journey</h2>
+            <p>Ready to transform your cafe business? We're here to help you achieve greater profitability and operational excellence. Schedule a complimentary business consultation to discuss your specific needs and growth opportunities.</p>
+            <p style="color: #4CAF50; font-weight: 600;"><strong>📍 Cafe Business Solutions HQ</strong><br>42nd Business Avenue, New York, NY 43043</p>
+            <p>
+                Call us at <strong>📞 (555) 123-2323</strong> or email <strong>📧 partners@cafebusiness.com</strong><br>
+                Or submit your business inquiry below:
+            </p>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="text" placeholder="Business Name" required>
+                <input type="email" placeholder="Business Email" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <select required>
+                    <option value="">Select Service Interest</option>
+                    <option value="wholesale">Wholesale Supply Partnership</option>
+                    <option value="menu">Menu Development</option>
+                    <option value="training">Staff Training</option>
+                    <option value="events">Event Catering</option>
+                    <option value="supply">Supply Chain Management</option>
+                    <option value="all">Comprehensive Partnership</option>
+                </select>
+                <input type="number" placeholder="Current Monthly Revenue ($)" min="0" required>
+                <textarea placeholder="Tell us about your cafe business, current challenges, and growth goals..." rows="5" required></textarea>
+                <button type="submit">Schedule Consultation</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Cafe Business Solutions. Empowering Cafe Entrepreneurs Worldwide.</p>
+    </footer>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Calculate offset for fixed navbar
+                    const navbarHeight = document.getElementById('navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                // Close mobile menu after clicking a link
+                const navMenu = document.getElementById('nav-menu');
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbar = document.getElementById('navbar');
+            const isClickInsideNavbar = navbar.contains(event.target);
+            
+            if (!isClickInsideNavbar && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+        });
+        
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your business inquiry! Our partnership team will contact you within 24 hours to schedule your consultation.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Landing Page</title>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #11203f;
+      --accent: #4f46e5;
+      --accent-soft: #6366f1;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --shadow: 0 20px 40px rgba(12, 18, 41, 0.4);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #080c1f 0%, #0a1330 100%);
+      line-height: 1.6;
+    }
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(9, 13, 27, 0.75);
+      border-bottom: 1px solid rgba(147, 197, 253, 0.16);
+    }
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      font-size: 1.4rem;
+      color: #e0e7ff;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-left: 1rem;
+      transition: color 0.2s ease;
+    }
+    nav a:hover { color: #e0e7ff; }
+    .button-primary {
+      padding: 0.62rem 1.15rem;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 0;
+      cursor: pointer;
+      color: #fff;
+      background: linear-gradient(120deg, #6366f1, #4f46e5);
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .button-primary:hover { transform: translateY(-1px); filter: brightness(1.08); }
+
+    .hero {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5.5rem 1.25rem 3.5rem 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.05rem, 4vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 1rem;
+    }
+    .hero-content p {
+      font-size: 1.04rem;
+      max-width: 680px;
+      color: var(--muted);
+      margin-bottom: 1.7rem;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+    .secondary { 
+      background: rgba(100, 116, 139, .2);
+      color: #cbd5e1;
+      border: 1px solid rgba(148, 163, 184, .35);
+      border-radius: 999px;
+      padding: 0.62rem 1.15rem;
+      font-weight: 600;
+    }
+    .hero-visual {
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      max-height: 380px;
+      background: linear-gradient(145deg,#1b2e5f,#121d44);
+      display: grid;
+      place-items: center;
+    }
+    .hero-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .features {
+      background: var(--surface);
+      border-top: 1px solid rgba(100, 116, 139, .2);
+      border-bottom: 1px solid rgba(100, 116, 139, .2);
+      padding: 3rem 1.25rem;
+    }
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: linear-gradient(140deg, rgba(8, 18, 44, .95), rgba(16, 25, 55, .9));
+      border: 1px solid rgba(113, 128, 235, .28);
+      border-radius: 18px;
+      padding: 1.3rem;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, border .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(99, 102, 241, .6); }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .card p { color: var(--muted); font-size: 0.96rem; }
+    .tag { display: inline-block; font-size: 0.75rem; margin-top: 0.7rem; color: #bfdbfe; opacity: .9; text-transform: uppercase; letter-spacing: .07em; }
+
+    .cta {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 4rem;
+      text-align: center;
+    }
+    .cta h2 {
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
+      margin-bottom: 0.8rem;
+      color: #f8fafc;
+    }
+    .cta p {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+    }
+
+    footer {
+      padding: 2.2rem 1.25rem;
+      border-top: 1px solid rgba(100, 116, 139, .24);
+    }
+    .footer-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+    .footer-wrap p { font-size: 0.85rem; color: #94a3b8; }
+
+    @media (min-width: 900px) {
+      .hero { grid-template-columns: 1.1fr .9fr; align-items: center; gap: 2.5rem; }
+      .hero-visual { min-height: 420px; }
+      nav a + a { margin-left: 1.25rem; }
+      .footer-wrap { flex-direction: row; align-items: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="nav-wrap">
+        <a href="#" class="brand">Nexa</a>
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <button class="button-primary">Sign up</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <p class="tag">SaaS • product design • AI workflow</p>
+          <h1>Build faster, ship smarter, scale with confidence</h1>
+          <p>Launch a polished, high-performance product experience with everything your team needs: collaboration, analytics, and automation in one modern platform.</p>
+          <div class="hero-actions">
+            <button class="button-primary">Get started free</button>
+            <button class="secondary">Watch demo</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80" alt="Product dashboard preview">
+        </div>
+      </section>
+
+      <section id="features" class="features">
+        <div class="grid">
+          <article class="card">
+            <h3>Real-time analytics</h3>
+            <p>Track usage trends, retention metrics, and conversion paths in one dashboard to make data-driven decisions instantly.</p>
+            <span class="tag">Live data</span>
+          </article>
+          <article class="card">
+            <h3>Teams & collaboration</h3>
+            <p>Share insights, assign comments, and automate workflows so everyone stays aligned from design to delivery.</p>
+            <span class="tag">Productivity</span>
+          </article>
+          <article class="card">
+            <h3>Secure by default</h3>
+            <p>Enterprise-grade security, SOC 2, SSO, and custom admin controls for compliance and peace of mind.</p>
+            <span class="tag">Security</span>
+          </article>
+          <article class="card">
+            <h3>Flexible API</h3>
+            <p>Integrate with your stack in minutes using curated SDKs and Webhooks, plus first-class developer docs.</p>
+            <span class="tag">Integrations</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta" id="pricing">
+        <h2>Ready to move faster?</h2>
+        <p>Start the free 14-day trial — no credit card required — and unlock premium features for your whole team.</p>
+        <button class="button-primary">Start Free Trial</button>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-wrap">
+        <p>© 2026 Nexa. All rights reserved.</p>
+        <p><a href="#" style="color:#94a3b8; text-decoration:none;">Privacy</a> · <a href="#" style="color:#94a3b8; text-decoration:none;">Terms</a> · <a href="#" style="color:#94a3b8; text-decoration:none;">Contact</a></p>
+      </div>
+    </footer>
+  </div>
+  <script src="java.js"></script>
+</body>
+</html>

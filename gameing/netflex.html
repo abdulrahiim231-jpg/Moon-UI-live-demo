@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone Pro - Business Gaming Solutions</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        
+        .hero .subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-section {
+            margin: 40px 0;
+        }
+        
+        .cta-section input {
+            padding: 15px 25px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            color: #333;
+            margin-right: 15px;
+            width: 300px;
+        }
+        
+        .cta-section button {
+            padding: 15px 35px;
+            font-size: 16px;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .cta-section button:hover {
+            background: #c0392b;
+        }
+        
+        .stats {
+            background: white;
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 36px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        .stat-item p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .features .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .testimonials {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-card .author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .testimonial-card .company {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .cta-section input {
+                margin-bottom: 15px;
+                margin-right: 0;
+                width: 100%;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">GameZone Pro</div>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#features">Solutions</a>
+                    <a href="#testimonials">Success Stories</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Enterprise Gaming Solutions for Your Business</h1>
+            <div class="subtitle">Boost Employee Engagement & Customer Retention</div>
+            <p>Transform your business with custom gaming platforms. Increase productivity, enhance team building, and create unique customer experiences with our B2B gaming solutions.</p>
+            
+            <div class="cta-section">
+                <input type="email" placeholder="Enter your business email" id="email">
+                <button onclick="handleSignup()">Schedule Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Business Partners</p>
+                </div>
+                <div class="stat-item">
+                    <h3>85%</h3>
+                    <p>Employee Engagement Increase</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3M+</h3>
+                    <p>Active Users</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Business Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Business Gaming Solutions</h2>
+            <div class="subtitle">Tailored gaming platforms designed for enterprise needs</div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Employee Training Games</h3>
+                    <p>Interactive training modules that make learning engaging and effective. Reduce training time by 60% while improving knowledge retention.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Customer Loyalty Programs</h3>
+                    <p>Gamified loyalty systems that increase customer retention by 45%. Custom rewards, leaderboards, and achievement systems.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">�</div>
+                    <h3>Team Building Platforms</h3>
+                    <p>Virtual team building games and competitions. Perfect for remote teams to connect and collaborate effectively.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">�</div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Real-time insights into user engagement, performance metrics, and ROI tracking. Make data-driven decisions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Bank-level security with SSO integration, data encryption, and compliance with industry standards.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Custom Integration</h3>
+                    <p>Seamless integration with your existing systems - CRM, HR software, and business intelligence tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>Success Stories</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"GameZone Pro transformed our employee training program. Engagement increased by 85% and training costs decreased by 40%."</p>
+                    <div class="author">Sarah Johnson</div>
+                    <div class="company">HR Director, TechCorp Inc.</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"The customer loyalty gaming platform helped us increase repeat purchases by 62%. Best investment we've made this year."</p>
+                    <div class="author">Michael Chen</div>
+                    <div class="company">CEO, RetailMax</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p>"Our remote team has never been more connected. The team building games improved collaboration significantly."</p>
+                    <div class="author">Emily Rodriguez</div>
+                    <div class="company">Operations Manager, GlobalTech</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function handleSignup() {
+            var email = document.getElementById('email').value;
+            if (email && email.indexOf('@') > -1) {
+                alert('Thank you for your interest! Our business solutions team will contact you within 24 hours to schedule your demo.');
+                document.getElementById('email').value = '';
+            } else {
+                alert('Please enter a valid business email address');
+            }
+        }
+        
+        // Simple smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

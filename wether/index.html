@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Ultimate Weather OS Dashboard - Moon UI" />
+    <title>Weather OS Dashboard - Moon UI</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @layer base {
+        body {
+          background-color: #000000;
+          color: #ffffff;
+          background-image: 
+            radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(96, 165, 250, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 40% 20%, rgba(147, 197, 253, 0.04) 0%, transparent 50%);
+        }
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+
+      .glass-card-hover:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(96, 165, 250, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .electric-blue {
+        color: #60A5FA;
+        text-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+      }
+
+      .electric-blue-glow {
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.3), 0 0 40px rgba(96, 165, 250, 0.1);
+      }
+
+      .search-glow:focus {
+        box-shadow: 0 0 30px rgba(96, 165, 250, 0.6), 0 0 60px rgba(96, 165, 250, 0.3);
+        border-color: #60A5FA;
+      }
+
+      /* Cloud Animation */
+      .cloud {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+        opacity: 0.4;
+        animation: float 20s infinite ease-in-out;
+      }
+
+      .cloud::before {
+        content: '';
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+      }
+
+      .cloud1 {
+        width: 100px;
+        height: 40px;
+        top: 20%;
+        left: -100px;
+        animation-duration: 25s;
+      }
+
+      .cloud1::before {
+        width: 50px;
+        height: 50px;
+        top: -25px;
+        left: 10px;
+      }
+
+      .cloud2 {
+        width: 80px;
+        height: 35px;
+        top: 40%;
+        left: -80px;
+        animation-duration: 30s;
+        animation-delay: 5s;
+      }
+
+      .cloud2::before {
+        width: 60px;
+        height: 40px;
+        top: -20px;
+        right: 15px;
+      }
+
+      .cloud3 {
+        width: 120px;
+        height: 45px;
+        top: 60%;
+        left: -120px;
+        animation-duration: 35s;
+        animation-delay: 10s;
+      }
+
+      .cloud3::before {
+        width: 70px;
+        height: 50px;
+        top: -25px;
+        left: 25px;
+      }
+
+      /* Rain Animation */
+      .rain {
+        position: absolute;
+        width: 2px;
+        height: 100px;
+        background: linear-gradient(to bottom, transparent, rgba(96, 165, 250, 0.3), transparent);
+        animation: rain-fall linear infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(100vw + 200px));
+        }
+      }
+
+      @keyframes rain-fall {
+        0% {
+          transform: translateY(-100vh);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+
+      /* Gauge Styles */
+      .gauge {
+        position: relative;
+        width: 120px;
+        height: 120px;
+      }
+
+      .gauge-circle {
+        transform: rotate(-90deg);
+      }
+
+      .gauge-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      /* Scrollbar Styling */
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 3px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(96, 165, 250, 0.5);
+        border-radius: 3px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(96, 165, 250, 0.7);
+      }
+
+      /* Weather Icon Animation */
+      .weather-icon {
+        animation: weather-float 3s ease-in-out infinite;
+      }
+
+      @keyframes weather-float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      const { useState, useEffect } = React;
+
+      const WeatherDashboard = () => {
+        const [searchQuery, setSearchQuery] = useState('');
+        const [currentWeather, setCurrentWeather] = useState({
+          city: 'London',
+          temp: 18,
+          condition: 'Partly Cloudy',
+          icon: '⛅',
+          humidity: 65,
+          windSpeed: 12,
+          uvIndex: 3,
+          visibility: 10
+        });
+
+        const [weeklyForecast] = useState([
+          { day: 'Mon', high: 20, low: 14, icon: '☀️', condition: 'Sunny' },
+          { day: 'Tue', high: 18, low: 12, icon: '⛅', condition: 'Partly Cloudy' },
+          { day: 'Wed', high: 16, low: 11, icon: '☁️', condition: 'Cloudy' },
+          { day: 'Thu', high: 15, low: 10, icon: '🌧️', condition: 'Rainy' },
+          { day: 'Fri', high: 17, low: 13, icon: '⛅', condition: 'Partly Cloudy' },
+          { day: 'Sat', high: 19, low: 15, icon: '☀️', condition: 'Sunny' },
+          { day: 'Sun', high: 21, low: 16, icon: '☀️', condition: 'Sunny' }
+        ]);
+
+        const [weatherType, setWeatherType] = useState('cloudy');
+
+        const handleSearch = (e) => {
+          e.preventDefault();
+          if (searchQuery.trim()) {
+            // Simulate weather data change
+            const cities = {
+              'new york': { city: 'New York', temp: 22, condition: 'Sunny', icon: '☀️', weatherType: 'sunny' },
+              'tokyo': { city: 'Tokyo', temp: 25, condition: 'Clear', icon: '🌤️', weatherType: 'sunny' },
+              'paris': { city: 'Paris', temp: 16, condition: 'Rainy', icon: '🌧️', weatherType: 'rainy' },
+              'london': { city: 'London', temp: 18, condition: 'Partly Cloudy', icon: '⛅', weatherType: 'cloudy' }
+            };
+            
+            const cityData = cities[searchQuery.toLowerCase()] || cities['london'];
+            setCurrentWeather(prev => ({ ...prev, ...cityData }));
+            setWeatherType(cityData.weatherType);
+          }
+        };
+
+        const GaugeWidget = ({ value, max, label, unit, color }) => {
+          const percentage = (value / max) * 100;
+          const strokeDasharray = `${percentage * 2.51} 251`;
+
+          return (
+            <div className="glass-card p-6 text-center">
+              <div className="gauge mx-auto mb-4">
+                <svg className="gauge-circle" width="120" height="120">
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="40"
+                    stroke="rgba(255, 255, 255, 0.1)"
+                    strokeWidth="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="40"
+                    stroke={color}
+                    strokeWidth="8"
+                    fill="none"
+                    strokeDasharray={strokeDasharray}
+                    strokeLinecap="round"
+                    style={{ transition: 'stroke-dasharray 0.5s ease' }}
+                  />
+                </svg>
+                <div className="gauge-text">
+                  <div className="text-2xl font-bold electric-blue">{value}</div>
+                  <div className="text-xs text-gray-400">{unit}</div>
+                </div>
+              </div>
+              <h3 className="text-sm font-medium text-gray-300">{label}</h3>
+            </div>
+          );
+        };
+
+        const WeatherBackground = () => {
+          if (weatherType === 'rainy') {
+            return (
+              <div className="fixed inset-0 pointer-events-none">
+                {[...Array(50)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="rain"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      animationDuration: `${Math.random() * 2 + 1}s`,
+                      animationDelay: `${Math.random() * 2}s`,
+                      opacity: Math.random() * 0.5 + 0.3
+                    }}
+                  />
+                ))}
+              </div>
+            );
+          }
+
+          return (
+            <div className="fixed inset-0 pointer-events-none">
+              <div className="cloud cloud1"></div>
+              <div className="cloud cloud2"></div>
+              <div className="cloud cloud3"></div>
+            </div>
+          );
+        };
+
+        return (
+          <div className="min-h-screen relative overflow-hidden">
+            <WeatherBackground />
+            
+            <div className="relative z-10 p-4 md:p-8">
+              {/* Search Bar */}
+              <div className="max-w-7xl mx-auto mb-8">
+                <form onSubmit={handleSearch} className="max-w-md mx-auto">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search city..."
+                      className="w-full px-6 py-4 bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl text-white placeholder-gray-400 focus:outline-none search-glow transition-all duration-300"
+                    />
+                    <button
+                      type="submit"
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl text-white font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+                    >
+                      Search
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              {/* Hero Section - Current Weather */}
+              <div className="max-w-7xl mx-auto mb-8">
+                <div className="glass-card p-8 md:p-12 electric-blue-glow">
+                  <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                      <h1 className="text-5xl md:text-6xl font-bold mb-2 electric-blue">
+                        {currentWeather.city}
+                      </h1>
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="text-6xl md:text-7xl weather-icon">
+                          {currentWeather.icon}
+                        </span>
+                        <div>
+                          <div className="text-5xl md:text-6xl font-bold text-white">
+                            {currentWeather.temp}°C
+                          </div>
+                          <div className="text-xl text-gray-300">
+                            {currentWeather.condition}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-gray-400">
+                        Feels like {currentWeather.temp - 2}°C
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="glass-card p-4">
+                        <div className="text-gray-400 text-sm mb-1">Humidity</div>
+                        <div className="text-2xl font-bold electric-blue">{currentWeather.humidity}%</div>
+                      </div>
+                      <div className="glass-card p-4">
+                        <div className="text-gray-400 text-sm mb-1">Wind Speed</div>
+                        <div className="text-2xl font-bold electric-blue">{currentWeather.windSpeed} km/h</div>
+                      </div>
+                      <div className="glass-card p-4">
+                        <div className="text-gray-400 text-sm mb-1">UV Index</div>
+                        <div className="text-2xl font-bold electric-blue">{currentWeather.uvIndex}</div>
+                      </div>
+                      <div className="glass-card p-4">
+                        <div className="text-gray-400 text-sm mb-1">Visibility</div>
+                        <div className="text-2xl font-bold electric-blue">{currentWeather.visibility} km</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Daily Forecast */}
+              <div className="max-w-7xl mx-auto mb-8">
+                <h2 className="text-2xl font-bold mb-4 electric-blue">7-Day Forecast</h2>
+                <div className="glass-card p-6">
+                  <div className="flex gap-4 overflow-x-auto custom-scrollbar pb-4">
+                    {weeklyForecast.map((day, index) => (
+                      <div
+                        key={index}
+                        className="flex-shrink-0 glass-card p-4 w-32 text-center glass-card-hover cursor-pointer"
+                      >
+                        <div className="font-medium text-gray-300 mb-2">{day.day}</div>
+                        <div className="text-3xl mb-2 weather-icon">{day.icon}</div>
+                        <div className="text-xs text-gray-400 mb-2">{day.condition}</div>
+                        <div className="flex justify-center gap-2 text-sm">
+                          <span className="text-white">{day.high}°</span>
+                          <span className="text-gray-500">{day.low}°</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Detailed Widgets */}
+              <div className="max-w-7xl mx-auto">
+                <h2 className="text-2xl font-bold mb-4 electric-blue">Weather Details</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <GaugeWidget
+                    value={currentWeather.windSpeed}
+                    max={50}
+                    label="Wind Speed"
+                    unit="km/h"
+                    color="#60A5FA"
+                  />
+                  <GaugeWidget
+                    value={currentWeather.uvIndex}
+                    max={11}
+                    label="UV Index"
+                    unit=""
+                    color="#FCD34D"
+                  />
+                  <GaugeWidget
+                    value={currentWeather.humidity}
+                    max={100}
+                    label="Humidity"
+                    unit="%"
+                    color="#60A5FA"
+                  />
+                  <GaugeWidget
+                    value={currentWeather.visibility}
+                    max={20}
+                    label="Visibility"
+                    unit="km"
+                    color="#34D399"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      ReactDOM.render(<WeatherDashboard />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

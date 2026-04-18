@@ -176,15 +176,15 @@
         
         .mobile-section-options {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
         }
         
         .mobile-section-option {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            padding: 1rem;
+            padding: 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
@@ -204,12 +204,13 @@
         .mobile-section-option-name {
             color: var(--text-primary);
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
         }
         
         .mobile-section-option-count {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .navbar-container {
@@ -383,9 +384,9 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-            margin-bottom: 6rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
 
         .project-card {
@@ -618,6 +619,22 @@
             fill: var(--gold);
         }
 
+        /* Tablet Responsive */
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .project-card {
+                padding: 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -629,16 +646,16 @@
             }
 
             .hero-title {
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
 
             .hero-stats {
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .category-tabs {
@@ -650,42 +667,59 @@
             }
 
             .projects-section {
-                padding: 6rem 1rem;
+                padding: 4rem 1rem;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .projects-section {
-                padding: 4rem 1rem;
+                padding: 3rem 0.8rem;
             }
 
             .projects-grid {
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .project-card {
-                padding: 1.5rem;
+                padding: 1.2rem;
+            }
+
+            .project-title {
+                font-size: 1.2rem;
+            }
+
+            .project-description {
+                font-size: 0.9rem;
+            }
+
+            .project-button {
+                padding: 0.8rem;
+                font-size: 0.85rem;
             }
 
             .leadership {
-                padding: 4rem 1rem;
+                padding: 3rem 0.8rem;
             }
 
             .logo {
-                font-size: 1.2rem;
-                letter-spacing: 2px;
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+            }
+
+            .navbar {
+                padding: 1rem 0;
             }
         }
 
@@ -1003,7 +1037,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Fashion Store</h3>
                         <p class="project-description">Modern fashion retail platform with shopping cart and payment systems.</p>
-                        <a href="./e-store/index.html" class="project-button" target="_blank">View Live Demo</a>
+                        <a href="./colthe/index.html" class="project-button" target="_blank">View Live Demo</a>
                     </div>
                 </div>
 
@@ -1020,6 +1054,14 @@
                         <h3 class="project-title">Salon</h3>
                         <p class="project-description">Beauty salon booking system with appointments and customer management.</p>
                         <a href="./salon/index.html" class="project-button" target="_blank">View Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Clothes</h3>
+                        <p class="project-description">Fashion clothing store with catalog and shopping cart features.</p>
+                        <a href="./colthe/index.html" class="project-button" target="_blank">View Live Demo</a>
                     </div>
                 </div>
             </div>
@@ -1064,7 +1106,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Calculator</h3>
                         <p class="project-description">Advanced calculator with scientific functions and history.</p>
-                        <a href="./cal/index.html" class="project-button" target="_blank">View Live Demo</a>
+                        <a href="./cal/abdul.html" class="project-button" target="_blank">View Live Demo</a>
                     </div>
                 </div>
 
@@ -1075,7 +1117,8 @@
                         <a href="./TYPR/index.html" class="project-button" target="_blank">View Live Demo</a>
                     </div>
                 </div>
-            </div>
+
+                            </div>
         </div>
 
         <!-- Business & Tools Projects -->
@@ -1085,7 +1128,7 @@
                     <div class="project-content">
                         <h3 class="project-title">Game Zone</h3>
                         <p class="project-description">Online gaming platform with multiple games and scores.</p>
-                        <a href="./gameing/index.html" class="project-button" target="_blank">View Live Demo</a>
+                        <a href="./gameing/netflex.html" class="project-button" target="_blank">View Live Demo</a>
                     </div>
                 </div>
 
@@ -1105,14 +1148,9 @@
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3 class="project-title">Fitness Enterprise</h3>
-                        <p class="project-description">Gym and fitness center management with member tracking.</p>
-                        <a href="./gym/index.html" class="project-button" target="_blank">View Live Demo</a>
-                    </div>
-                </div>
-
+                
+                
+                
                 <div class="project-card">
                     <div class="project-content">
                         <h3 class="project-title">Meeting Business</h3>

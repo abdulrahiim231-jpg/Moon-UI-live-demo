@@ -260,11 +260,28 @@
             </div>
             
             <!-- Mobile Menu Button -->
-            <button class="md:hidden text-white">
-                <i data-lucide="menu" class="w-6 h-6"></i>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/95 backdrop-blur-lg hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 px-6">
+            <a href="#membership" onclick="toggleMobileMenu()" class="text-2xl text-white hover:text-cyan-400 transition-colors font-medium">Membership</a>
+            <a href="#features" onclick="toggleMobileMenu()" class="text-2xl text-white hover:text-cyan-400 transition-colors font-medium">Features</a>
+            <a href="#lab" onclick="toggleMobileMenu()" class="text-2xl text-white hover:text-cyan-400 transition-colors font-medium">The Lab</a>
+            <a href="#tribe" onclick="toggleMobileMenu()" class="text-2xl text-white hover:text-cyan-400 transition-colors font-medium">Our Tribe</a>
+            <button onclick="window.location.href='mailto:abdulrahiim231@gmail.com?subject=JOIN%20THE%20ELITE&body=I%20want%20to%20join%20your%20elite%20fitness%20community.%20Please%20provide%20more%20information.'; toggleMobileMenu();" class="relative group px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105">
+                <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 p-[2px]">
+                    <div class="w-full h-full bg-black/90 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-black/80 transition-all duration-300">
+                        <span class="relative z-10 text-lg">JOIN THE ELITE</span>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center">
@@ -613,6 +630,23 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            
+            // Re-initialize Lucide icons to update the icon
+            lucide.createIcons();
+        }
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -623,6 +657,11 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMobileMenu();
+                    }
                 }
             });
         });

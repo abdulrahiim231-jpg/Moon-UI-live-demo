@@ -8,13 +8,19 @@
 </head>
 <body>
     <!-- Header Nav -->
-    <nav>
-        <img src="https://images.unsplash.com/photo-1628258334168-d841b529f3b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Urban Clothing Logo" class="logo-img">
-        <a href="#" class="brand-name">Urban Clothing</a>
-    </nav>
+    <div style="position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); z-index: 9999; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="color: #FFFFF0; font-size: 1.2rem; font-weight: bold;">MOON UI | ATELIER</div>
+        <div style="display: flex; gap: 30px;">
+            <a href="#collection" style="color: white; text-decoration: none; font-size: 1rem; transition: all 0.3s; padding: 5px 10px; border-radius: 5px;" onmouseover="this.style.color='#FFD700'; this.style.textShadow='0 0 10px #FFD700'; this.style.transform='scale(1.05)'" onmouseout="this.style.color='white'; this.style.textShadow='none'; this.style.transform='scale(1)'" onclick="smoothScrollToSection('collection')">The Collection</a>
+            <a href="#process" style="color: white; text-decoration: none; font-size: 1rem; transition: all 0.3s; padding: 5px 10px; border-radius: 5px;" onmouseover="this.style.color='#FFD700'; this.style.textShadow='0 0 10px #FFD700'; this.style.transform='scale(1.05)'" onmouseout="this.style.color='white'; this.style.textShadow='none'; this.style.transform='scale(1)'" onclick="smoothScrollToSection('process')">The Process</a>
+            <a href="#fabrics" style="color: white; text-decoration: none; font-size: 1rem; transition: all 0.3s; padding: 5px 10px; border-radius: 5px;" onmouseover="this.style.color='#FFD700'; this.style.textShadow='0 0 10px #FFD700'; this.style.transform='scale(1.05)'" onmouseout="this.style.color='white'; this.style.textShadow='none'; this.style.transform='scale(1)'" onclick="smoothScrollToSection('fabrics')">Fabrics</a>
+            <a href="#contact" style="color: white; text-decoration: none; font-size: 1rem; transition: all 0.3s; padding: 5px 10px; border-radius: 5px;" onmouseover="this.style.color='#FFD700'; this.style.textShadow='0 0 10px #FFD700'; this.style.transform='scale(1.05)'" onmouseout="this.style.color='white'; this.style.textShadow='none'; this.style.transform='scale(1)'" onclick="smoothScrollToSection('contact')">Visit Us</a>
+        </div>
+        <button onclick="openEmailClient()" style="background: transparent; color: #E6B88A; border: 2px solid #E6B88A; padding: 8px 20px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: all 0.3s;">BOOK A FITTING</button>
+    </div>
 
     <!-- Menu Bar -->
-    <nav class="bar">
+    <!-- <nav class="bar">
         <ul>
             <li>Home</li>
             <li>About</li>
@@ -23,171 +29,509 @@
             <li>News</li>
             <li>Contact</li>
         </ul>
-    </nav>
+    </nav> -->
 
     <!-- Promo Banner -->
-    <nav class="shop-promo">
+    <div class="shop-promo" style="margin-top: 60px;">
         <p>Sale Up To 50% - Biggest Discounts. Hurry! Limited Period Offer <button class="shop-btn">Shop Now</button></p>
-    </nav>
+    </div>
 
     <!-- Hero Section -->
-    <div class="main-hero">
+    <div class="main-hero" style="background-image: url('colthe/bb1.jpeg'); margin-top: 0; height: 80vh; overflow: hidden;">
         <div class="hero-content">
-            <h1>Discover Latest Fashion</h1>
-            <p>Men, Women & Kids Collections - New Arrivals Daily</p>
+            <h1>ARCHITECTING YOUR SECOND SKIN.</h1>
+            <p>The Moon UI Atelier: Where bespoke tailoring meets structural precision.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" style="background: linear-gradient(135deg, #1a1a1a, #333333); color: #FFD700; border: none; padding: 15px 30px; font-weight: bold; border-radius: 50px; cursor: pointer; transition: all 0.4s; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); font-size: 1rem;">ENTER THE ATELIER</button>
+                <button class="btn-secondary" style="background: transparent; color: #FFD700; border: 3px solid #FFD700; padding: 15px 30px; font-weight: bold; border-radius: 50px; cursor: pointer; transition: all 0.4s; letter-spacing: 2px; text-transform: uppercase; box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); font-size: 1rem;">VIEW COLLECTION</button>
+            </div>
         </div>
     </div>
 
-    <!-- Men Section -->
-    <section class="section">
-        <h2 class="section-title">Men's Fashion - New Clothes</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Men Slim Jeans" class="product-img">
-                <div class="product-info">
-                    <h3>Slim Fit Jeans</h3>
-                    <div class="price">$59</div>
-                    <button class="add-cart">Add to Cart</button>
+    <!-- Section 2: The Collection -->
+    <section id="collection" class="collection-section" style="background: url('colthe/fabric2.jpeg') no-repeat center center; background-size: cover; background-attachment: fixed; padding: 80px 2rem; color: #FFFFF0; position: relative;">
+        <h2 class="section-title" style="color: #FFFFF0; font-size: 3rem; margin-bottom: 4rem; text-align: center; font-weight: bold; letter-spacing: 2px;">The Collection</h2>
+        <div class="collection-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+            <div class="collection-card" style="background: rgba(26,26,26,0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.boxShadow='0 20px 60px rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(-10px)'" onmouseout="this.style.boxShadow='0 10px 40px rgba(0,0,0,0.5)'; this.style.transform='translateY(0)'">
+                <img src="colthe/fashion1.jpeg" style="width: 100%; height: 300px; object-fit: cover;">
+                <div style="padding: 2rem; text-align: center;">
+                    <h3 style="color: #FFFFF0; font-size: 1.5rem; margin-bottom: 1rem;">Bespoke Tailoring</h3>
+                    <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 1.5rem;">Precision-crafted garments designed exclusively for you</p>
+                    <button onclick="showDetail('bespoke')" style="background: #FFD700; color: black; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s;">View Details</button>
                 </div>
             </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="White Shirt" class="product-img">
-                <div class="product-info">
-                    <h3>Classic White Shirt</h3>
-                    <div class="price">$39</div>
-                    <button class="add-cart">Add to Cart</button>
+            <div class="collection-card" style="background: rgba(26,26,26,0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.boxShadow='0 20px 60px rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(-10px)'" onmouseout="this.style.boxShadow='0 10px 40px rgba(0,0,0,0.5)'; this.style.transform='translateY(0)'">
+                <img src="colthe/fashion2.jpeg" style="width: 100%; height: 300px; object-fit: cover;">
+                <div style="padding: 2rem; text-align: center;">
+                    <h3 style="color: #FFFFF0; font-size: 1.5rem; margin-bottom: 1rem;">Luxury Fabrics</h3>
+                    <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 1.5rem;">Premium materials sourced from the finest mills</p>
+                    <button onclick="showDetail('fabrics')" style="background: #FFD700; color: black; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s;">View Details</button>
                 </div>
             </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Leather Jacket" class="product-img">
-                <div class="product-info">
-                    <h3>Leather Jacket</h3>
-                    <div class="price">$129</div>
-                    <button class="add-cart">Add to Cart</button>
+            <div class="collection-card" style="background: rgba(26,26,26,0.8); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; overflow: hidden; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.boxShadow='0 20px 60px rgba(255, 255, 255, 0.1)'; this.style.transform='translateY(-10px)'" onmouseout="this.style.boxShadow='0 10px 40px rgba(0,0,0,0.5)'; this.style.transform='translateY(0)'">
+                <img src="colthe/bb1.jpeg" style="width: 100%; height: 300px; object-fit: cover;">
+                <div style="padding: 2rem; text-align: center;">
+                    <h3 style="color: #FFFFF0; font-size: 1.5rem; margin-bottom: 1rem;">Signature Pieces</h3>
+                    <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 1.5rem;">Timeless designs for modern wardrobes</p>
+                    <button onclick="showDetail('signature')" style="background: #FFD700; color: black; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s;">Explore</button>
                 </div>
             </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sneakers" class="product-img">
-                <div class="product-info">
-                    <h3>Sports Sneakers</h3>
-                    <div class="price">$89</div>
-                    <button class="add-cart">Add to Cart</button>
+        </div>
+
+    
+    <!-- The Process Section -->
+    <section id="process" class="section" style="padding: 80px 2rem; background: #1a1a1a;">
+        <h2 class="section-title" style="color: #FFFFF0; font-size: 2.5rem; margin-bottom: 4rem;">The Process</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; max-width: 1200px; margin: 0 auto;">
+            <div class="selection-card" style="background: rgba(26,26,26,0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.boxShadow='0 25px 70px rgba(255, 215, 0, 0.4)'; this.style.transform='translateY(-15px)'" onmouseout="this.style.boxShadow='0 15px 50px rgba(0,0,0,0.1)'; this.style.transform='translateY(0)'">
+                <img src="colthe/process (1).jpeg" style="width: 100%; height: 300px; object-fit: cover;">
+                <div style="padding: 2rem; text-align: center;">
+                    <h3 style="color: #FFD700; font-size: 1.5rem; margin-bottom: 1rem; letter-spacing: 1px;">Blueprint & Vision</h3>
+                    <p style="color: #ccc; line-height: 1.6; margin-bottom: 1.5rem;">Initial consultation and design conceptualization. We translate your vision into detailed blueprints.</p>
+                    <div style="background: #333; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <h4 style="color: #FFD700; font-size: 1.1rem; margin-bottom: 0.5rem;">Key Elements</h4>
+                        <ul style="color: #ccc; line-height: 1.6; padding-left: 1rem; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.5rem;">Design sketch creation</li>
+                            <li style="margin-bottom: 0.5rem;">Material selection</li>
+                            <li style="margin-bottom: 0.5rem;">Technical specifications</li>
+                        </ul>
+                    </div>
+                    <button onclick="showProcessDetail('blueprint')" style="background: #FFD700; color: #1a1a1a; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s; width: 100%;">Learn More</button>
+                </div>
+            </div>
+            <div class="selection-card" style="background: rgba(26,26,26,0.9); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; overflow: hidden; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.boxShadow='0 25px 70px rgba(255, 215, 0, 0.4)'; this.style.transform='translateY(-15px)'" onmouseout="this.style.boxShadow='0 15px 50px rgba(0,0,0,0.1)'; this.style.transform='translateY(0)'">
+                <img src="colthe/process (2).jpeg" style="width: 100%; height: 300px; object-fit: cover; filter: blur(2px);">
+                <div style="padding: 2rem; text-align: center;">
+                    <h3 style="color: #FFD700; font-size: 1.5rem; margin-bottom: 1rem; letter-spacing: 1px;">Tailoring & Precision</h3>
+                    <p style="color: #ccc; line-height: 1.6; margin-bottom: 1.5rem;">Master craftsmanship meets modern precision. Every stitch is placed with purpose.</p>
+                    <div style="background: #333; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                        <h4 style="color: #FFD700; font-size: 1.1rem; margin-bottom: 0.5rem;">Craftsmanship</h4>
+                        <ul style="color: #ccc; line-height: 1.6; padding-left: 1rem; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.5rem;">Hand-stitched detailing</li>
+                            <li style="margin-bottom: 0.5rem;">Quality control checks</li>
+                            <li style="margin-bottom: 0.5rem;">Final fitting adjustments</li>
+                        </ul>
+                    </div>
+                    <button onclick="showProcessDetail('tailoring')" style="background: #FFD700; color: #1a1a1a; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s; width: 100%;">Learn More</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Women Section -->
-    <section class="section">
-        <h2 class="section-title">Women's Fashion - New Arrivals</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e01a71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Summer Dress" class="product-img">
-                <div class="product-info">
-                    <h3>Summer Dress</h3>
-                    <div class="price">$69</div>
-                    <button class="add-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Blouse" class="product-img">
-                <div class="product-info">
-                    <h3>Office Blouse</h3>
-                    <div class="price">$45</div>
-                    <button class="add-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="High Waist Pants" class="product-img">
-                <div class="product-info">
-                    <h3>High Waist Pants</h3>
-                    <div class="price">$79</div>
-                    <button class="add-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1503634374366-f2bb95f5e09a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Heels" class="product-img">
-                <div class="product-info">
-                    <h3>Designer Heels</h3>
-                    <div class="price">$99</div>
-                    <button class="add-cart">Add to Cart</button>
+    
+    <!-- Fabrics Section -->
+    <section id="fabrics" style="padding: 80px 2rem; background: url('colthe/fabric.jpeg') no-repeat center center; background-size: cover; background-attachment: fixed; position: relative; min-height: 100vh;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.3); z-index: 1;"></div>
+        <div style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+            <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; padding: 4rem; max-width: 600px; text-align: center; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);">
+                <h2 style="color: #FFFFF0; font-size: 2.5rem; margin-bottom: 2rem; letter-spacing: 3px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">FABRIC ARCHITECTURE</h2>
+                <p style="color: #FFFFF0; font-size: 1.1rem; line-height: 1.8; margin-bottom: 3rem; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">We source only the finest natural fibers. From Cashmere to Silk, our fabrics are engineered for comfort and perfect drape.</p>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="openFabricModal('silk')" style="background: rgba(255, 255, 255, 0.2); color: #FFFFF0; border: 1px solid rgba(255, 255, 255, 0.3); padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">EXPLORE SILK</button>
+                    <button onclick="openFabricModal('cashmere')" style="background: rgba(255, 255, 255, 0.2); color: #FFFFF0; border: 1px solid rgba(255, 255, 255, 0.3); padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">SEE CASHMERE</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Children Section -->
-    <section class="section">
-        <h2 class="section-title">Kids Fashion - New Collection</h2>
-        <div class="products-grid">
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kids T-Shirt" class="product-img">
-                <div class="product-info">
-                    <h3>Graphic T-Shirt</h3>
-                    <div class="price">$25</div>
-                    <button class="add-cart">Add to Cart</button>
-                </div>
+    <!-- Contact Footer -->
+    <footer id="contact" style="background: #1a1a1a; color: #FFFFF0; padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(255, 215, 0, 0.2);">
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
+            <div>
+                <h3 style="color: #FFD700; font-size: 1.3rem; margin-bottom: 1rem;">Visit Our Atelier</h3>
+                <p style="color: #ccc; line-height: 1.6; margin-bottom: 1rem;">123 Fashion Avenue<br>Luxury District<br>New York, NY 10001</p>
+                <p style="color: #FFD700; font-weight: bold;">+1 (555) 123-4567</p>
             </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1561352679-7c84973a2f06?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kids Shorts" class="product-img">
-                <div class="product-info">
-                    <h3>Summer Shorts</h3>
-                    <div class="price">$30</div>
-                    <button class="add-cart">Add to Cart</button>
-                </div>
+            <div>
+                <h3 style="color: #FFD700; font-size: 1.3rem; margin-bottom: 1rem;">Opening Hours</h3>
+                <p style="color: #ccc; line-height: 1.6; margin-bottom: 1rem;">Monday - Friday: 10:00 AM - 7:00 PM<br>Saturday: 10:00 AM - 5:00 PM<br>Sunday: By Appointment</p>
+                <p style="color: #FFD700; font-weight: bold;">Private Consultations Available</p>
             </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1612872087721-eab72257cc9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kids Hoodie" class="product-img">
-                <div class="product-info">
-                    <h3>Cozy Hoodie</h3>
-                    <div class="price">$40</div>
-                    <button class="add-cart">Add to Cart</button>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1611665214139-89afee4f9ba5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Kids Sneakers" class="product-img">
-                <div class="product-info">
-                    <h3>Colorful Sneakers</h3>
-                    <div class="price">$50</div>
-                    <button class="add-cart">Add to Cart</button>
-                </div>
+            <div>
+                <h3 style="color: #FFD700; font-size: 1.3rem; margin-bottom: 1rem;">Connect With Us</h3>
+                <p style="color: #ccc; line-height: 1.6; margin-bottom: 1rem;">Email: abdulrahiim231@gmail.com<br>Phone: 03006955087</p>
+                <button style="background: #FFD700; color: #1a1a1a; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s; margin-top: 1rem;">Book Consultation</button>
             </div>
         </div>
-    </section>
-
-    <!-- Original Category Images (Updated) -->
-    <section class="section">
-        <h2 class="section-title">Shop Categories</h2>
-        <div class="category-grid">
-            <div class="category-item">
-                <img src="https://images.unsplash.com/photo-1529139577552-5905a7e1bf7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Men" style="width:100%;height:100%;object-fit:cover;">
-                <div class="category-overlay">
-                    <h3>Men's Fashion</h3>
-                </div>
-            </div>
-            <div class="category-item">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e01a71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Women" style="width:100%;height:100%;object-fit:cover;">
-                <div class="category-overlay">
-                    <h3>Women's Fashion</h3>
-                </div>
-            </div>
-            <div class="category-item">
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kids" style="width:100%;height:100%;object-fit:cover;">
-                <div class="category-overlay">
-                    <h3>Kids Fashion</h3>
-                </div>
-            </div>
+        <div style="border-top: 1px solid rgba(255, 215, 0, 0.2); padding-top: 2rem; margin-top: 2rem;">
+            <p style="color: #666; font-size: 0.9rem;">&copy; 2024 Moon UI Atelier. All rights reserved. | Privacy Policy | Terms of Service</p>
         </div>
-    </section>
-
-    <!-- About -->
-    <section class="about">
-        <h2>Premium Quality Fashion for Everyone</h2>
-        <p>Urban Clothing offers the latest trends for Men, Women & Kids. Shop new arrivals with up to 50% off!</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Urban Clothing. All rights reserved. | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
     </footer>
+
+    <!-- Detail Modals -->
+    <div id="bespokeDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeDetail('bespoke')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Bespoke Tailoring Excellence</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Craftsmanship</h3>
+                    <p style="color: #666; line-height: 1.6;">Each garment is meticulously crafted by our master tailors with over 30 years of combined experience. We use traditional techniques combined with modern precision.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Personalization</h3>
+                    <p style="color: #666; line-height: 1.6;">From fabric selection to final fitting, every aspect is tailored to your unique measurements and preferences. Your vision, our execution.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">The Process</h3>
+                <ol style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;">Initial consultation and measurement</li>
+                    <li style="margin-bottom: 1rem;">Design sketch and fabric selection</li>
+                    <li style="margin-bottom: 1rem;">First fitting and adjustments</li>
+                    <li style="margin-bottom: 1rem;">Final garment delivery</li>
+                </ol>
+            </div>
+            <button onclick="closeDetail('bespoke')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Book Consultation</button>
+        </div>
+    </div>
+
+    <div id="signatureDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeDetail('signature')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Signature Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Professional Information</h3>
+                    <p style="color: #666; line-height: 1.6;">Our team of expert tailors and designers have years of experience in creating bespoke garments. We use only the finest materials and techniques to ensure a perfect fit.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Book Appointment</h3>
+                    <p style="color: #666; line-height: 1.6;">Schedule a consultation with our team to discuss your bespoke garment needs. We will work with you to create a unique and personalized piece.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Appointment Details</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;">Duration: 30 minutes</li>
+                    <li style="margin-bottom: 1rem;">Location: Our Atelier</li>
+                    <li style="margin-bottom: 1rem;">Date and Time: To be scheduled</li>
+                </ul>
+            </div>
+            <button onclick="closeDetail('signature')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Book Appointment</button>
+        </div>
+    </div>
+
+    <div id="fabricsDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeDetail('fabrics')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Luxury Fabric Collection</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Material Excellence</h3>
+                    <p style="color: #666; line-height: 1.6;">We source fabrics from the world's most prestigious mills including Italian wool, Egyptian cotton, and Japanese silk.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Sustainability</h3>
+                    <p style="color: #666; line-height: 1.6;">All our materials are ethically sourced and environmentally sustainable, ensuring luxury with conscience.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Fabric Categories</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Wools:</strong> Merino, Cashmere, Vicuña</li>
+                    <li style="margin-bottom: 1rem;"><strong>Cottons:</strong> Egyptian, Sea Island, Pima</li>
+                    <li style="margin-bottom: 1rem;"><strong>Silks:</strong> Mulberry, Tussah, Eri</li>
+                    <li style="margin-bottom: 1rem;"><strong>Linens:</strong> Belgian, Irish, Italian</li>
+                </ul>
+            </div>
+            <button onclick="closeDetail('fabrics')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">View Collection</button>
+        </div>
+    </div>
+
+    <!-- Bag Detail Modals -->
+    <div id="executiveDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeBagDetail('executive')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Executive Briefcase Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Premium Materials</h3>
+                    <p style="color: #666; line-height: 1.6;">Genuine Italian leather with gold-plated hardware. Water-resistant coating and reinforced stitching for durability.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Interior Design</h3>
+                    <p style="color: #666; line-height: 1.6;">Multiple compartments with laptop sleeve, document pockets, and luxury lining. RFID protection included.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Specifications</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Dimensions:</strong> 42cm x 30cm x 10cm</li>
+                    <li style="margin-bottom: 1rem;"><strong>Weight:</strong> 1.2kg</li>
+                    <li style="margin-bottom: 1rem;"><strong>Capacity:</strong> 15L</li>
+                    <li style="margin-bottom: 1rem;"><strong>Warranty:</strong> 5 years international</li>
+                </ul>
+            </div>
+            <button onclick="closeBagDetail('executive')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Add to Cart - $850</button>
+        </div>
+    </div>
+
+    <div id="designerDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeBagDetail('designer')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Designer Tote Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Craftsmanship</h3>
+                    <p style="color: #666; line-height: 1.6;">Hand-stitched premium canvas with genuine leather accents. YKK zippers and reinforced base for longevity.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Versatility</h3>
+                    <p style="color: #666; line-height: 1.6;">Perfect for work, travel, or casual outings. Adjustable shoulder strap and multiple carrying options.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Features</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Interior:</strong> Multiple pockets with zippered section</li>
+                    <li style="margin-bottom: 1rem;"><strong>Exterior:</strong> Side pockets and back sleeve</li>
+                    <li style="margin-bottom: 1rem;"><strong>Material:</strong> Water-resistant canvas with leather trim</li>
+                    <li style="margin-bottom: 1rem;"><strong>Care:</strong> Spot clean only, professional cleaning recommended</li>
+                </ul>
+            </div>
+            <button onclick="closeBagDetail('designer')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Add to Cart - $650</button>
+        </div>
+    </div>
+
+    <div id="urbanDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeBagDetail('urban')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Urban Backpack Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Smart Organization</h3>
+                    <p style="color: #666; line-height: 1.6;">Dedicated laptop compartment, tablet sleeve, and smart cable management system. Quick-access front pocket for essentials.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Ergonomic Design</h3>
+                    <p style="color: #666; line-height: 1.6;">Padded back panel with airflow channels. Adjustable chest and waist straps for weight distribution.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Technical Specs</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Capacity:</strong> 25L with expansion</li>
+                    <li style="margin-bottom: 1rem;"><strong>Materials:</strong> Ballistic nylon with leather accents</li>
+                    <li style="margin-bottom: 1rem;"><strong>Weight:</strong> 950g empty</li>
+                    <li style="margin-bottom: 1rem;"><strong>Compatibility:</strong> Fits 15-17 inch laptops</li>
+                </ul>
+            </div>
+            <button onclick="closeBagDetail('urban')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Add to Cart - $450</button>
+        </div>
+    </div>
+
+    <!-- Shoe Detail Modals -->
+    <div id="oxfordDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeShoeDetail('oxford')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Oxford Excellence Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Premium Craftsmanship</h3>
+                    <p style="color: #666; line-height: 1.6;">Handcrafted English leather with traditional Goodyear welting. Timeless design passed down through generations.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Comfort & Durability</h3>
+                    <p style="color: #666; line-height: 1.6;">Cushioned insole with leather sole. Built for all-day comfort and long-lasting wear.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Technical Specifications</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Leather:</strong> Full-grain English calfskin</li>
+                    <li style="margin-bottom: 1rem;"><strong>Sole:</strong> Leather with rubber heel</li>
+                    <li style="margin-bottom: 1rem;"><strong>Sizing:</strong> UK 7-12</li>
+                    <li style="margin-bottom: 1rem;"><strong>Care:</strong> Professional polishing recommended</li>
+                </ul>
+            </div>
+            <button onclick="closeShoeDetail('oxford')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Add to Cart - $450</button>
+        </div>
+    </div>
+
+    <div id="loaferDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeShoeDetail('loafer')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Italian Loafer Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Luxury Comfort</h3>
+                    <p style="color: #666; line-height: 1.6;">Premium Italian leather with hand-stitched detailing. Slip-on design for effortless sophistication.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Versatile Design</h3>
+                    <p style="color: #666; line-height: 1.6;">Perfect for business casual or formal wear. Adjustable strap for personalized comfort.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Material Quality</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Exterior:</strong> Full-grain leather with polished finish</li>
+                    <li style="margin-bottom: 1rem;"><strong>Interior:</strong> Leather lining with cushioned insole</li>
+                    <li style="margin-bottom: 1rem;"><strong>Hardware:</strong> Solid brass buckles</li>
+                    <li style="margin-bottom: 1rem;"><strong>Sizing:</strong> EU 40-46</li>
+                </ul>
+            </div>
+            <button onclick="closeShoeDetail('loafer')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Add to Cart - $380</button>
+        </div>
+    </div>
+
+    <div id="sneakerDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeShoeDetail('sneaker')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Urban Performance Details</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Athletic Engineering</h3>
+                    <p style="color: #666; line-height: 1.6;">Modern athletic design with premium materials. Engineered for comfort and performance in urban environments.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Smart Features</h3>
+                    <p style="color: #666; line-height: 1.6;">Breathable mesh upper with cushioned midsole. Perfect for active lifestyle and daily commutes.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Technical Specs</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Upper:</strong> Engineered mesh with synthetic overlays</li>
+                    <li style="margin-bottom: 1rem;"><strong>Midsole:</strong> Dual-density foam cushioning</li>
+                    <li style="margin-bottom: 1rem;"><strong>Outsole:</strong> High-traction rubber with flex grooves</li>
+                    <li style="margin-bottom: 1rem;"><strong>Weight:</strong> 320g per shoe</li>
+                </ul>
+            </div>
+            <button onclick="closeShoeDetail('sneaker')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Add to Cart - $320</button>
+        </div>
+    </div>
+
+    <!-- Fabric Detail Modals -->
+    <div id="silkDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeFabricModal('silk')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Premium Silk Collection</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Luxury Silk Varieties</h3>
+                    <p style="color: #666; line-height: 1.6;">Our silk collection features the finest mulberry, tussah, and eri silks. Each variety is carefully selected for its unique texture and drape qualities.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Craftsmanship Excellence</h3>
+                    <p style="color: #666; line-height: 1.6;">Hand-loomed by master artisans using traditional techniques passed down through generations. Every thread is placed with precision.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Silk Characteristics</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Mulberry:</strong> Smooth texture, natural sheen, excellent drape</li>
+                    <li style="margin-bottom: 1rem;"><strong>Tussah:</strong> Slub texture, matte finish, subtle iridescence</li>
+                    <li style="margin-bottom: 1rem;"><strong>Eri:</strong> Coarse texture, warm feel, perfect for winter</li>
+                </ul>
+            </div>
+            <button onclick="closeFabricModal('silk')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Explore Silk Collection</button>
+        </div>
+    </div>
+
+    <div id="cashmereDetail" class="detail-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; overflow-y: auto;">
+        <div style="max-width: 800px; margin: 5vh auto; background: white; border-radius: 20px; padding: 3rem; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeFabricModal('cashmere')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 2rem; cursor: pointer; color: #666;">×</button>
+            <h2 style="color: #1a1a1a; font-size: 2rem; margin-bottom: 2rem;">Premium Cashmere Collection</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Exceptional Softness</h3>
+                    <p style="color: #666; line-height: 1.6;">Sourced from the finest Mongolian cashmere goats. Our cashmere provides unparalleled softness and warmth with natural luxury.</p>
+                </div>
+                <div>
+                    <h3 style="color: #FFD700; margin-bottom: 1rem;">Sustainable Luxury</h3>
+                    <p style="color: #666; line-height: 1.6;">Ethically harvested and processed using environmentally friendly methods. Each piece represents sustainable luxury fashion.</p>
+                </div>
+            </div>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px; margin-bottom: 2rem;">
+                <h3 style="color: #1a1a1a; margin-bottom: 1rem;">Cashmere Qualities</h3>
+                <ul style="color: #666; line-height: 1.8; padding-left: 1.5rem;">
+                    <li style="margin-bottom: 1rem;"><strong>Origin:</strong> Mongolian highlands</li>
+                    <li style="margin-bottom: 1rem;"><strong>Fiber Diameter:</strong> 14-19 microns (finest grade)</li>
+                    <li style="margin-bottom: 1rem;"><strong>Processing:</strong> Hand-combeded, traditionally spun</li>
+                    <li style="margin-bottom: 1rem;"><strong>Care:</strong> Dry clean or professional laundering</li>
+                </ul>
+            </div>
+            <button onclick="closeFabricModal('cashmere')" style="background: #1a1a1a; color: #FFD700; border: none; padding: 15px 30px; border-radius: 25px; font-weight: bold; cursor: pointer;">Explore Cashmere Collection</button>
+        </div>
+    </div>
+
+    <script>
+        function showDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function showBagDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeBagDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function showProcessDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeProcessDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function showShoeDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeShoeDetail(type) {
+            document.getElementById(type + 'Detail').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function openFabricModal(type) {
+            document.getElementById(type + 'Detail').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Change background to fabric2.jpeg
+            document.querySelector('.fabrics-section').style.background = "url('colthe/fabric2.jpeg') no-repeat center center";
+            document.querySelector('.fabrics-section').style.backgroundSize = 'cover';
+            document.querySelector('.fabrics-section').style.backgroundAttachment = 'fixed';
+        }
+        
+        function closeFabricModal(type) {
+            document.getElementById(type + 'Detail').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Reset background to fabric.jpeg
+            document.querySelector('#fabrics').style.background = "url('colthe/fabric.jpeg') no-repeat center center";
+            document.querySelector('#fabrics').style.backgroundSize = 'cover';
+            document.querySelector('#fabrics').style.backgroundAttachment = 'fixed';
+        }
+        
+        function smoothScrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        function openEmailClient() {
+            window.location.href = 'mailto:abdulrahiim231@gmail.com?subject=Book Fitting - Moon UI Atelier&body=I would like to book a fitting appointment at Moon UI Atelier. Please contact me to schedule a consultation.';
+        }
+    </script>
+
 </body>
 </html>

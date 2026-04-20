@@ -1,8 +1,10 @@
-# TODO: Clothing Brand Demo Updates
+# Task: Update Sections 2,3,4 in bbb.html/bbb.css
 
-- [x] Review original bbb.html & bbb.css
-- [x] Plan confirmed with user
-- [x] Update bbb.css with modern responsive styles
-- [x] Rewrite bbb.html with new Men/Women/Children product grids (12 new clothes: different for men/women/kids)
-- [x] Test responsiveness (confirmed: mobile-first grid/flex, media queries work)
-- [x] Complete
+## Steps:
+- [ ] Step 1: Update Section 2 (Collection) - bg-black, 'CURATED SELECTIONS' ivory, 3-col grid thin borders.
+- [ ] Step 2: Remove Fashion Bags section.
+- [ ] Step 3: Add new Section 3 (Process) - bg-[#0a0a0a], 'ARCHITECTED TAILORING', cyan accent lines connecting 3 steps.
+- [ ] Step 4: Add Section 4 (Fabrics) - bg-black, glassmorphism cards.
+- [ ] Step 5: Update bbb.css with new classes.
+- [ ] Step 6: Test and complete.
+

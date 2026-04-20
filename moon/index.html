@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOON UI Gym - Premium Fitness Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            --secondary-gradient: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            --accent-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            --dark-bg: #0a0a0f;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Modern Background */
+        .modern-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent-gradient);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary-gradient);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 7s;
+        }
+
+        .orb3 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary-gradient);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(100px, -100px) scale(1.1) rotate(90deg); }
+            50% { transform: translate(-100px, 100px) scale(0.9) rotate(180deg); }
+            75% { transform: translate(50px, 50px) scale(1.05) rotate(270deg); }
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .glass-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.5);
+        }
+
+        /* Modern Borders and Glows */
+        .modern-border {
+            border: 1px solid transparent;
+            background: linear-gradient(var(--dark-bg), var(--dark-bg)) padding-box,
+                        var(--accent-gradient) border-box;
+        }
+
+        .accent-glow {
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .accent-glow-hover:hover {
+            box-shadow: 0 0 50px rgba(255, 107, 53, 0.6);
+        }
+
+        /* Typography */
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-2 {
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Cards */
+        .modern-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .modern-card:hover::before {
+            left: 100%;
+        }
+
+        /* Buttons */
+        .modern-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modern-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .modern-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Navigation */
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px 10px rgba(255, 107, 53, 0.3);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gradient-orb {
+                filter: blur(100px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Modern Background -->
+    <div class="modern-bg">
+        <div class="gradient-orb orb1"></div>
+        <div class="gradient-orb orb2"></div>
+        <div class="gradient-orb orb3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-blur py-4 px-6">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo with Neon Blue Glow -->
+            <div class="flex items-center">
+                <h1 class="text-2xl md:text-3xl font-black tracking-tight relative">
+                    <span class="text-white">MOON UI</span>
+                    <span class="text-gray-400 mx-2">|</span>
+                    <span class="text-white">GYM</span>
+                    <!-- Neon Blue Glow Effect -->
+                    <div class="absolute inset-0 z-[-1]">
+                        <div class="w-full h-full bg-gradient-to-r from-blue-500/30 via-cyan-500/30 to-blue-500/30 blur-md"></div>
+                    </div>
+                </h1>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#membership" class="text-white hover:text-cyan-400 transition-colors font-medium">Membership</a>
+                <a href="#features" class="text-white hover:text-cyan-400 transition-colors font-medium">Features</a>
+                <a href="#lab" class="text-white hover:text-cyan-400 transition-colors font-medium">The Lab</a>
+                <a href="#tribe" class="text-white hover:text-cyan-400 transition-colors font-medium">Our Tribe</a>
+            </div>
+            
+            <!-- JOIN THE ELITE Button -->
+            <div class="hidden md:block">
+                <button class="relative group px-6 py-3 text-white font-bold rounded-lg transition-all duration-300 hover:scale-105">
+                    <!-- Border Gradient -->
+                    <div class="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 p-[1px]">
+                        <div class="w-full h-full bg-black/90 rounded-lg flex items-center justify-center backdrop-blur-sm group-hover:bg-black/80 transition-all duration-300">
+                            <span class="relative z-10 text-sm tracking-wide">JOIN THE ELITE</span>
+                        </div>
+                    </div>
+                    <!-- Hover Glow Effect -->
+                    <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg">
+                        <div class="w-full h-full rounded-lg bg-gradient-to-r from-blue-500/40 via-cyan-500/40 to-blue-500/40"></div>
+                    </div>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="img-gym/hero-section.jpeg" alt="Gym" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/60"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
+                We don't design gym<br>
+                <span class="text-blue-400">we architect power</span>
+            </h1>
+            
+            <button onclick="window.location.href='mailto:abdulrahiim231@gmail.com?subject=Get%20Ready%20Inquiry&body=I%20am%20ready%20to%20start%20my%20fitness%20journey.%20Please%20provide%20more%20information%20about%20your%20programs.'" class="relative group bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
+                <span class="relative z-10">Get Ready</span>
+                <div class="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-300"></div>
+            </button>
+        </div>
+    </section>
+
+    <!-- Our Tribe Section -->
+    <section id="tribe" class="relative py-20 lg:py-32 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="img-gym/tribe.jpeg" alt="Tribe" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+        </div>
+        
+        <!-- Content Container -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-12">
+            <div class="flex items-center min-h-[500px]">
+                <!-- Glassmorphism Text Box -->
+                <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="glass rounded-2xl p-8 lg:p-12 backdrop-blur-md border border-white/10">
+                        <!-- Heading -->
+                        <h2 class="text-3xl lg:text-4xl font-black text-white mb-6 leading-tight">
+                            We Build Bodies, but We Forge Tribes.
+                        </h2>
+                        
+                        <!-- Sub-text -->
+                        <p class="text-lg lg:text-xl text-gray-200 mb-8 leading-relaxed">
+                            Join a powerful community of elite members who motivate and elevate each other towards high-performance goals.
+                        </p>
+                        
+                        <!-- JOIN THE TRIBE Button -->
+                        <button onclick="window.location.href='mailto:abdulrahiim231@gmail.com?subject=Join%20The%20Tribe&body=I%20want%20to%20join%20your%20elite%20fitness%20tribe.%20Please%20provide%20more%20information%20about%20membership%20and%20community%20benefits.'" class="relative group px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105">
+                            <!-- Neon Blue Glow Border -->
+                            <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 p-[2px]">
+                                <div class="w-full h-full bg-black/90 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-black/80 transition-all duration-300">
+                                    <span class="relative z-10 tracking-wide">[ JOIN THE TRIBE ]</span>
+                                </div>
+                            </div>
+                            <!-- Hover Glow Effect -->
+                            <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl">
+                                <div class="w-full h-full rounded-xl bg-gradient-to-r from-blue-500/50 via-cyan-500/50 to-blue-500/50"></div>
+                            </div>
+                            <!-- Additional Inner Glow -->
+                            <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-30 transition-all duration-500">
+                                <div class="w-full h-full rounded-xl bg-cyan-400/20 blur-sm"></div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Empty Space for Balance -->
+                <div class="hidden lg:block lg:w-1/2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Performance Lab Section -->
+    <section id="lab" class="relative py-20 lg:py-32 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="img-gym/lab.jpeg" alt="Performance Lab" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/80"></div>
+        </div>
+        
+        <!-- Content Container -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-12">
+            <div class="flex items-center min-h-[600px]">
+                <!-- Content Box -->
+                <div class="w-full lg:w-2/3 mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
+                    <!-- Main Heading -->
+                    <h2 class="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight tracking-tight">
+                        THE PERFORMANCE LAB
+                    </h2>
+                    
+                    <!-- Sub-text Description -->
+                    <p class="text-lg lg:text-xl text-gray-200 mb-12 leading-relaxed max-w-3xl mx-auto">
+                        Every rep is measured. Every calorie is calculated. In The Lab, we use AI-driven biomechanics and real-time data to optimize your transformation. No guesswork&mdash;just pure results.
+                    </p>
+                    
+                    <!-- ANALYZE MY POTENTIAL Button -->
+                    <button onclick="window.location.href='mailto:abdulrahiim231@gmail.com?subject=Analyze%20My%20Potential&body=I%20am%20interested%20in%20analyzing%20my%20fitness%20potential%20at%20your%20Performance%20Lab.%20Please%20provide%20more%20information%20about%20your%20biometric%20and%20performance%20analysis%20services.'" class="relative group px-10 py-5 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-105">
+                        <!-- White Glow Border -->
+                        <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-white via-gray-200 to-white p-[2px]">
+                            <div class="w-full h-full bg-black/90 rounded-2xl flex items-center justify-center backdrop-blur-sm group-hover:bg-black/80 transition-all duration-300">
+                                <span class="relative z-10 tracking-wider text-lg">ANALYZE MY POTENTIAL</span>
+                            </div>
+                        </div>
+                        <!-- White Glow Effect on Hover -->
+                        <div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl">
+                            <div class="w-full h-full rounded-2xl bg-gradient-to-r from-white/60 via-gray-200/60 to-white/60"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="relative py-20 lg:py-32">
+        <!-- Content -->
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
+                    FEATURES
+                </h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    Elite amenities designed for peak performance
+                </p>
+            </div>
+            
+            <!-- Feature Images Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="relative group overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <img src="img-gym/feature1.jpeg" alt="Feature 1" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-black text-white mb-3">ELITE TRAINING</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Master the art of transformation with Olympic-level coaching and personalized biomechanics analysis</p>
+                            <div class="mt-4 flex items-center text-cyan-400 text-sm font-semibold">
+                                <span>TRANSFORM NOW</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="relative group overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <img src="img-gym/feature2.jpeg" alt="Feature 2" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-black text-white mb-3">PERFORMANCE LAB</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Where science meets strength - AI-driven performance optimization with real-time metabolic tracking</p>
+                            <div class="mt-4 flex items-center text-cyan-400 text-sm font-semibold">
+                                <span>ANALYZE POTENTIAL</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="relative group overflow-hidden rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <img src="img-gym/feature.jpeg" alt="Feature 3" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 class="text-2xl font-black text-white mb-3">VIP SANCTUARY</h3>
+                            <p class="text-gray-200 text-sm leading-relaxed">Experience luxury redefined - private recovery suites, cryotherapy chambers, and elite nutrition protocols</p>
+                            <div class="mt-4 flex items-center text-cyan-400 text-sm font-semibold">
+                                <span>CLAIM EXCELLENCE</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="relative py-20 lg:py-32 overflow-hidden">
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
+                    MEMBERSHIP
+                </h2>
+                <p class="text-xl text-gray-200 max-w-2xl mx-auto">
+                    Choose your path to excellence
+                </p>
+            </div>
+            
+            <!-- Membership Plans with Side Images -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Elite Plan with Side Image -->
+                <div class="flex flex-col lg:flex-row gap-8" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Plan Content -->
+                    <div class="flex-1 glass rounded-3xl p-8 lg:p-10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
+                        <h3 class="text-2xl lg:text-3xl font-black text-white mb-2">ELITE ATHLETE</h3>
+                        <p class="text-gray-300 text-sm mb-6">For serious performance seekers</p>
+                        
+                        <div class="text-3xl lg:text-4xl font-black text-white mb-8">
+                            <span class="text-cyan-400">$149</span>
+                            <span class="text-gray-400 text-lg">/month</span>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">Unlimited access to all training facilities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">12 personal training sessions per month</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">Performance Lab analysis & tracking</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">Custom nutrition protocols & planning</span>
+                            </li>
+                        </ul>
+                        
+                        <button onclick="window.location.href='mailto:abdulrahiim231@gmail.com?subject=Elite%20Athlete%20Membership&body=I%20am%20interested%20in%20the%20Elite%20Athlete%20membership%20plan.%20Please%20provide%20more%20information.'" class="w-full relative group px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105">
+                            <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 p-[2px]">
+                                <div class="w-full h-full bg-black/90 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-black/80 transition-all duration-300">
+                                    <span class="relative z-10 tracking-wide">CHOOSE ELITE ATHLETE</span>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl">
+                                <div class="w-full h-full rounded-xl bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-cyan-500/50"></div>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Side Image -->
+                    <div class="flex-1 lg:max-w-md">
+                        <img src="img-gym/member-ship.jpeg" alt="Elite Athlete" class="w-full h-64 lg:h-full object-cover rounded-2xl">
+                    </div>
+                </div>
+
+                <!-- VIP Plan with Side Image -->
+                <div class="flex flex-col lg:flex-row gap-8" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Plan Content -->
+                    <div class="flex-1 glass rounded-3xl p-8 lg:p-10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 relative">
+                        <!-- Popular Badge -->
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                            <div class="bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-sm font-black px-6 py-2 rounded-full">
+                                MOST POPULAR
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl lg:text-3xl font-black text-white mb-2 mt-4">VIP LEGACY</h3>
+                        <p class="text-gray-300 text-sm mb-6">The ultimate fitness experience</p>
+                        
+                        <div class="text-3xl lg:text-4xl font-black text-white mb-8">
+                            <span class="text-cyan-400">$299</span>
+                            <span class="text-gray-400 text-lg">/month</span>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">Everything in Elite Athlete Plus</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">Unlimited personal training & coaching</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">Private training suite & equipment</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-0.5 flex-shrink-0"></i>
+                                <span class="text-gray-200">24/7 priority access & concierge</span>
+                            </li>
+                        </ul>
+                        
+                        <button onclick="window.location.href='mailto:abdulrahiim231@gmail.com?subject=VIP%20Legacy%20Membership&body=I%20am%20interested%20in%20the%20VIP%20Legacy%20membership%20plan.%20Please%20provide%20more%20information.'" class="w-full relative group px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105">
+                            <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 p-[2px]">
+                                <div class="w-full h-full bg-black/90 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-black/80 transition-all duration-300">
+                                    <span class="relative z-10 tracking-wide">CHOOSE VIP LEGACY</span>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl">
+                                <div class="w-full h-full rounded-xl bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-cyan-500/50"></div>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <!-- Side Image -->
+                    <div class="flex-1 lg:max-w-md">
+                        <img src="img-gym/member-ship.jpeg" alt="VIP Legacy" class="w-full h-64 lg:h-full object-cover rounded-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass rounded-3xl p-12 text-center" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    <span class="gradient-text">Start Your Transformation</span>
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    <strong>Ready to transform your life?</strong> Join our elite fitness community today and get your first week free!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="https://wa.me/923006955087?text=Hi%20MOON%20Gym%2C%20I%20want%20to%20start%20my%20fitness%20journey" target="_blank" class="modern-btn inline-block px-12 py-6 bg-gradient-to-r from-orange-500 to-red-500 text-white text-lg font-black rounded-2xl hover:from-orange-400 hover:to-red-400 transition-all pulse-animation">
+                        Start Free Trial
+                    </a>
+                    <a href="mailto:contact@moonui.com" class="modern-btn inline-block px-12 py-6 glass border-2 border-white text-white text-lg font-black rounded-2xl hover:bg-white hover:text-orange-500 transition-all">
+                        Email Us
+                    </a>
+                </div>
+                <div class="mt-8 flex justify-center gap-6">
+                    <a href="https://wa.me/923006955087" target="_blank" class="text-gray-400 hover:text-orange-400 transition-colors">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </a>
+                    <a href="mailto:contact@moonui.com" class="text-gray-400 hover:text-orange-400 transition-colors">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/10 text-center">
+        <p class="text-sm uppercase tracking-widest font-mono gradient-text mb-2">MOON UI GYM</p>
+        <p class="text-xs text-gray-400">Transform Your Body | Elite Fitness Experience</p>
+        <p class="text-xs text-gray-400 mt-2">Contact: contact@moonui.com</p>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for orbs
+        window.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.gradient-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 15;
+                const xOffset = (x - 0.5) * speed;
+                const yOffset = (y - 0.5) * speed;
+                orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
